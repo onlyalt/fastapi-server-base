@@ -1,0 +1,47 @@
+[project]
+name = "fast-server-base"
+version = "0.1.0"
+description = "FastAPI + GraphQL scaffold with PostgreSQL and Redis"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.30",
+    "alembic>=1.14",
+    "strawberry-graphql[fastapi]>=0.262",
+    "redis>=5.2",
+    "pydantic-settings>=2.7",
+    "faker>=37.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+    "pytest-describe>=2.2",
+    "ruff>=0.9",
+    "pyright>=1.1",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "basic"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
