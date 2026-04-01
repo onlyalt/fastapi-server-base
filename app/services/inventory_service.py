@@ -22,9 +22,10 @@ def fetch_item(item_id: str) -> InventoryItem | None:
     if item_id.startswith("itm_"):
         adjective = fake.word(ext_word_list=None)
         obj = fake.word(ext_word_list=None)
+        owner_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, item_id))
         return InventoryItem(
             id=item_id,
-            owner_id=f"usr_{uuid.uuid4()}",
+            owner_id=f"usr_{owner_id}",
             name=f"{adjective} {obj}",
         )
 
