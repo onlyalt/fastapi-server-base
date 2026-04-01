@@ -16,9 +16,9 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None]:
     await redis_client.aclose()
 
 
-async def get_context() -> dict:
+async def get_context():
     async with async_session() as session:
-        return {"session": session}
+        yield {"session": session}
 
 
 graphql_app: GraphQLRouter = GraphQLRouter(schema, context_getter=get_context)  # type: ignore[type-arg]
